@@ -136,16 +136,17 @@ public class Steps {
 		//loop through products which are provided in feature file as data tables
 		List<Map<String, String>> data = tables.asMaps();
 		for (Map<String, String> row : data){
-			String feature_product_menu=row.get("menu");
-			String feature_product_category=row.get("category");
-			String feature_product_subcategory=row.get("subcategory");
-			String feature_product_quantity=row.get("quantity");
-			homePage.build_main_menu_actions(feature_product_menu,feature_product_category,feature_product_subcategory);
-			homePage.wait_for_page_to_load();
-			//list to store product names which are anchor tags to view product details
-	        List<String> all_product_list=productPage.get_individual_product_names_in_list();
-	        String url=driver.getCurrentUrl();
-	        //select the items for the number provided in feature file
+	        try {
+	        	String feature_product_menu=row.get("menu");
+				String feature_product_category=row.get("category");
+				String feature_product_subcategory=row.get("subcategory");
+				String feature_product_quantity=row.get("quantity");
+				homePage.build_main_menu_actions(feature_product_menu,feature_product_category,feature_product_subcategory);
+				homePage.wait_for_page_to_load();
+				//list to store product names which are anchor tags to view product details
+		        List<String> all_product_list=productPage.get_individual_product_names_in_list();
+		        String url=driver.getCurrentUrl();
+		        //select the items for the number provided in feature file
 	        for(int i=0; i < Integer.parseInt(feature_product_quantity); i++) {
 	            try {
 	                productPage.click_product_name(all_product_list.get(i));
@@ -161,7 +162,7 @@ public class Steps {
 	                driver.navigate().back();
 	                productPage.wait_for_page_to_load();
 	            } catch (StaleElementReferenceException | NoSuchElementException e) {
-	                // If StaleElementReferenceException is thrown, refresh the page and try again
+	                // If StaleElementReferenceException or NoSuchElementException is thrown, refresh the page and try again
 	                driver.navigate().refresh();
 	                driver.navigate().to(url);
 	                productPage.wait_for_page_to_load();
@@ -177,11 +178,16 @@ public class Steps {
 	                productPage.wait_for_success_message();
 	                driver.navigate().back();
 	                productPage.wait_for_page_to_load();
-//	                productPage = new ProductPage(driver);
-//	                productPage.wait_for_page_to_load();
-//	                i--;
 	            }
 	        }
+	        }
+	        catch (Exception e) {
+	        	String feature_product_menu=row.get("menu");
+				String feature_product_category=row.get("category");
+				String feature_product_subcategory=row.get("subcategory");
+	        	homePage.build_main_menu_actions(feature_product_menu,feature_product_category,feature_product_subcategory);
+				homePage.wait_for_page_to_load();
+			}
 		}
 	}
 	@And("^Go to Cart page to verify added Products and Price$")
@@ -214,7 +220,6 @@ public class Steps {
 			JavascriptExecutor js = (JavascriptExecutor) driver;
 			cartPage.scroll_to_checkout_and_click(js, wait);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -227,7 +232,7 @@ public class Steps {
 		try {
 		    shippingAddressPage.add_new_address(wait);
 		} catch (StaleElementReferenceException | ElementClickInterceptedException e) {
-		    // If StaleElementReferenceException is thrown, refresh the page and try again
+		    // If StaleElementReferenceException or ElementClickInterceptedException is thrown, refresh the page and try again
 		    driver.navigate().refresh();
 		    shippingAddressPage = new ShippingAddressPage(driver);
 		    shippingAddressPage.add_new_address(wait);
@@ -282,7 +287,6 @@ public class Steps {
 	    try {
 			shippingAddressPage.click_deliver_method(delivery_method);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -290,10 +294,6 @@ public class Steps {
 	
 	@Then("^User places the order$")
 	public void user_places_the_order() throws InterruptedException {
-		//sleep to handle ElementClickInterceptedException
-//		Thread.sleep(5000);
-//		paymentPage=new PaymentPage(driver);
-//		paymentPage.place_order();
 		try {
 		    paymentPage = new PaymentPage(driver);
 		    WebDriverWait wait = new WebDriverWait(driver, 30);
