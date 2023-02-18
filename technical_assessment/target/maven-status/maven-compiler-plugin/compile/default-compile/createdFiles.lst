@@ -6,4 +6,3 @@ pages\LoginPage.class
 pages\CartPage.class
 pages\HomePage.class
 pages\WebsiteDefaultPage.class
-pages\RegistrationPage.class
