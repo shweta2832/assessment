@@ -1,0 +1,9 @@
+pages\ConfirmationPage.class
+pages\PaymentPage.class
+pages\ProductPage.class
+pages\ShippingAddressPage.class
+pages\LoginPage.class
+pages\CartPage.class
+pages\HomePage.class
+pages\WebsiteDefaultPage.class
+pages\RegistrationPage.class
