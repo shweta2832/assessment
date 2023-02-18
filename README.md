@@ -1,12 +1,28 @@
-# assessment
-1.BDD Framework is used to write the code
-2.POM is followed to write elements and methods for particular webpage in src/main/java/pages
-3.Feature flow is present inside src/test/java/features that describes the behavior of application and scenarios under test whicj are written in Given When and Then
-4.Runner Class is present to run the code and ExtentCucumberAdapter plugin used to generate the report
-5.Code for Steps is defined under step_definition
-6.Configuration.properties in present under configs folder where all the hardcoded values are defined like email address, password, application url
-7.To read the values from configuration.properties, ConfigFileReader class is created inside dataProvider
-8.chrome_driver.exe is present inside drivers folder for chrome version 110
-9.Properties for Extent reporting can be modified in extent.properties which is present inside src/test/resources
-10.Once framework is run,report gets generated inside test-output folder which further contains folder SpartReport d-MMM-YY HH-mm-ss. Report folder contains with Spark.html and Screenshots are present in Screenshots folder.
-11.Code can be run by right clicking on Runner file and click Run as Junit
+BDD Framework
+This is a Behavior-Driven Development (BDD) framework that is used to write automated tests for a web application. The framework uses the Page Object Model (POM) design pattern to organize the code and improve maintainability.
+
+Project Structure
+The project structure consists of the following components:
+
+src/main/java/pages: This folder contains the page classes that represent the web pages of the application. Each page class contains methods that interact with the elements on the page.
+src/test/java/features: This folder contains the feature files that describe the behavior of the application and the scenarios that are under test. The feature files are written in the Given-When-Then format.
+src/test/java/step_definition: This folder contains the step definition classes that implement the steps defined in the feature files. Each step definition class contains methods that perform the actions described in the steps.
+
+Configuration
+The following configuration files are used by the framework:
+
+configs/configuration.properties: This file contains the hardcoded values used by the framework, such as the email address, password, and application URL.
+
+src/test/resources/extent.properties: This file contains the properties for the Extent reporting plugin, such as the output directory and file name.
+Running the Framework
+To run the framework, follow these steps:
+
+Clone the repository to your local machine.
+Ensure that you have the correct version of Chrome installed and that the chrome_driver.exe file is present in the drivers folder.
+Open the project in an IDE and run the src/test/java/runner/Runner.java file as a JUnit test.
+After the tests have finished running, the Extent report will be generated in the test-output folder.
+Report
+The report is generated using the ExtentCucumberAdapter plugin and consists of an HTML file (Spark.html) and a folder containing screenshots (Screenshots).
+
+
+
