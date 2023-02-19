@@ -181,7 +181,8 @@ public class Steps {
 	            }
 	        }
 	        }
-	        catch (NoSuchElementException e) {
+	        catch (StaleElementReferenceException | NoSuchElementException e) {
+				driver.navigate().refresh();
 	        	String feature_product_menu=row.get("menu");
 				String feature_product_category=row.get("category");
 				String feature_product_subcategory=row.get("subcategory");
