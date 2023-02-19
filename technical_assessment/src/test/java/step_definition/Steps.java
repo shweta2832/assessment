@@ -72,8 +72,8 @@ public class Steps {
 		driver.close();
 	}
 	
-	@Given("^User is on the website page$")
-	public void user_is_on_the_website_page() {
+	@Given("^User is on the website$")
+	public void user_is_on_the_website() {
 		try {
 			driver.get(configFileReader.getApplicationUrl());
 		} catch (Exception e) {
@@ -82,8 +82,8 @@ public class Steps {
 		}
 	}
 
-	@When("^User clicks sign in option to login$")
-	public void user_clicks_on_signin_option_to_login() {
+	@When("^User clicks on sign in button$")
+	public void user_clicks_on_signin_button() {
 		try {
 		    websiteDefaultPage = new WebsiteDefaultPage(driver);
 		    websiteDefaultPage.click_on_sign_in(); //registered user need to click on signin link
@@ -108,8 +108,8 @@ public class Steps {
 
 	}
 
-	@Then("^User Clicks Signin for logging into application$")
-	public void user_clicks_signin_for_logging_into_application() {
+	@Then("^User submit the details$")
+	public void user_submit_the_details() {
 		try {
 			loginPage.click_submit();
 		} catch (Exception e) {
@@ -117,8 +117,8 @@ public class Steps {
 		}
 	}
 
-	@Then("^User gets login successfully$")
-	public void user_gets_login_successfully(){
+	@Then("^User is logged in$")
+	public void user_is_logged_in(){
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, 30); // wait for up to 30 seconds for page to load
 			wait.until(ExpectedConditions.titleContains(configFileReader.getHomePageTtile()));
@@ -212,8 +212,8 @@ public class Steps {
         
 	}
 
-	@Then("^User Clicks Proceed to checkout$")
-	public void user_clicks_proceed_to_checkout() throws InterruptedException  {
+	@Then("^User Clicks on Proceed to checkout button$")
+	public void user_clicks_on_proceed_to_checkout_button() throws InterruptedException  {
 		//wait for Proceed to check button to be completely visible
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -293,8 +293,8 @@ public class Steps {
 	}
 	
 	
-	@And("^User Completes the place order process$")
-	public void user_completes_the_place_order_process() throws InterruptedException {
+	@And("^User clicks on place order button$")
+	public void user_clicks_on_place_order_button() throws InterruptedException {
 		try {
 		    paymentPage = new PaymentPage(driver);
 		    WebDriverWait wait = new WebDriverWait(driver, 30);
