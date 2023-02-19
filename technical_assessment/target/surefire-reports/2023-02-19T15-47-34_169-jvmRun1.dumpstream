@@ -1,0 +1,16 @@
+# Created at 2023-02-19T15:47:36.927
+Corrupted STDOUT by directly writing to native stream in forked JVM 1. Stream ':maven:surefire:std:out:test-error:normal-run:UTF-8:QnV5aW5nIGFuZCBQbGFjaW5nIGFuIG9yZGVyIGFzIHJlZ2lzdGVyZWQgdXNlcg==:-::-:-:VGVzdCBuYW1lIG11c3Qgbm90IGJlIG51bGwgb3IgZW1wdHk=:-:VGVzdCBuYW1lIG11c3Qgbm90IGJlIG51bGwgb3IgZW1wdHk=:VGVzdCBuYW1lIG11c3Qgbm90IGJlIG51bGwgb3IgZW1wdHk=:amF2YS5sYW5nLklsbGVnYWxBcmd1bWVudEV4Y2VwdGlvbjogVGVzdCBuYW1lIG11c3Qgbm90IGJlIG51bGwgb3IgZW1wdHkK'.
+java.lang.NumberFormatException: For input string: "VGVzdCBuYW1lIG11c3Qgbm90IGJlIG51bGwgb3IgZW1wdHk="
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:580)
+	at java.lang.Integer.valueOf(Integer.java:740)
+	at java.lang.Integer.decode(Integer.java:1197)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkedChannelDecoder.decodeToInteger(ForkedChannelDecoder.java:334)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkedChannelDecoder.toReportEntry(ForkedChannelDecoder.java:318)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkedChannelDecoder.handleEvent(ForkedChannelDecoder.java:273)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.processLine(ForkClient.java:409)
+	at org.apache.maven.plugin.surefire.booterclient.output.ForkClient.consumeLine(ForkClient.java:379)
+	at org.apache.maven.plugin.surefire.booterclient.output.ThreadedStreamConsumer$Pumper.run(ThreadedStreamConsumer.java:88)
+	at java.lang.Thread.run(Thread.java:748)
+
+

@@ -2,6 +2,7 @@ package pages;
 
 import java.util.LinkedList;
 
+
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -12,30 +13,29 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ProductPage {
 	
 	
-	By product_name_links=By.xpath("//li[@class='item product product-item']//div[@class='product details product-item-details']//a[@class='product-item-link']");
+	By product_name_links=By.className("product-item-link");
 	
-	By product_name = By.xpath("//h1/span");
+	By product_name = By.className("base");
 	
-	By product_price = By.xpath("//div[@class='product-info-price']//descendant::span[@class='price']");
+	By product_price = By.className("price");
 	
-	By product_size = By.xpath("//div[@class='swatch-option text']");
+	By product_size = By.cssSelector("div[class='swatch-option text']");
 	
-	By product_color=By.xpath("//div[@class='swatch-option color']");
+	By product_color=By.cssSelector("div[class='swatch-option color']");
 	
-	
-	By add_to_cart_btn=By.xpath("//button[@title='Add to Cart']");
-	
+	By add_to_cart_btn=By.cssSelector("button[title='Add to Cart']");
 	
 	By success_text=By.cssSelector("div[role='alert']");
 	
-	By shopping_cart_symbol=By.xpath("//a[@href='https://magento.softwaretestingboard.com/checkout/cart/']");
+	By shopping_cart_symbol=By.cssSelector("a[class='action showcart']");
 	
-	By view_cart=By.xpath("//*[text()='View and Edit Cart']");
+	By view_cart=By.cssSelector("a[class='action viewcart']");
 	
 	WebDriver driver;
 	
@@ -66,26 +66,56 @@ public class ProductPage {
 	
 	public String get_product_name() {
 		//get product name of product
-		return driver.findElement(product_name).getText();
+		WebDriverWait wait = new WebDriverWait(driver, 10); 
+    	wait.until(ExpectedConditions.presenceOfElementLocated(product_name));
+    	String name="";
+    	while(name.isEmpty()) {
+    		name=driver.findElement(product_name).getText();
+    	}
+		return name;
 	}
 	
 	public String get_product_price() {
 		// get price of product
-		return driver.findElement(product_price).getText();
+		WebDriverWait wait = new WebDriverWait(driver, 10); 
+    	wait.until(ExpectedConditions.presenceOfElementLocated(product_price));
+    	String price="";
+    	while(price.isEmpty()) {
+    		price=driver.findElement(product_price).getText();
+    	}
+		return price;
 	}
 	
 	public void click_product_size() {
 		// select the first available size present on product detail
+		//wait for product size to be clickable
+		FluentWait<WebDriver> wait1 = new FluentWait<WebDriver>(driver)
+			    .withTimeout(30,TimeUnit.SECONDS)
+			    .pollingEvery(5,TimeUnit.SECONDS)
+			    .ignoring(NoSuchElementException.class);
+		wait1.until(ExpectedConditions.elementToBeClickable(product_size));
 		driver.findElement(product_size).click();
 	}
 	
 	public void click_product_color() {
 		//// select the first available color present on product detail
+		//wait for product size to be clickable
+		FluentWait<WebDriver> wait1 = new FluentWait<WebDriver>(driver)
+			    .withTimeout(30,TimeUnit.SECONDS)
+			    .pollingEvery(5,TimeUnit.SECONDS)
+			    .ignoring(NoSuchElementException.class);
+		wait1.until(ExpectedConditions.elementToBeClickable(product_color));
 		driver.findElement(product_color).click();
 	}
 	
 	public void click_add_to_cart() {
 		//click on add to cart to add the product in shopping cart
+		//wait for product size to be clickable
+		FluentWait<WebDriver> wait1 = new FluentWait<WebDriver>(driver)
+			    .withTimeout(30,TimeUnit.SECONDS)
+			    .pollingEvery(5,TimeUnit.SECONDS)
+			    .ignoring(NoSuchElementException.class);
+		wait1.until(ExpectedConditions.elementToBeClickable(add_to_cart_btn));
 		driver.findElement(add_to_cart_btn).click();
 	}
 	
@@ -102,7 +132,7 @@ public class ProductPage {
 	}
 
 	public void wait_for_shopping_cart_to_be_clickable() {
-		//wait for shopping cart to be visible
+		//wait for shopping cart to be clickable
 		FluentWait<WebDriver> wait1 = new FluentWait<WebDriver>(driver)
 			    .withTimeout(30,TimeUnit.SECONDS)
 			    .pollingEvery(5,TimeUnit.SECONDS)

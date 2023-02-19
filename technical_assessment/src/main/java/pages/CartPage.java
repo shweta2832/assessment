@@ -11,26 +11,26 @@ import org.openqa.selenium.support.ui.Wait;
 
 public class CartPage {
 	
-	@FindBy(xpath="//table[@id='shopping-cart-table']//descendant::strong[@class='product-item-name']//a")
-	List<WebElement> product_names_anchor_tag_list;
-	
-	@FindBy(xpath="//table[@id='shopping-cart-table']//descendant::td[@class='col price']//span[@class='price']")
-	List<WebElement> product_price_anchor_tag_list;
-	
-	@FindBy(xpath="//*[contains(text(),'Estimate Shipping and Tax')]")
+	@FindBy(id="block-shipping-heading")
 	WebElement shipping_tax;
 	
-	@FindBy(xpath="//th[contains(text(),'Subtotal')]")
+	@FindBy(css="tr[class='totals sub']")
 	WebElement subtotal;
 	
-	@FindBy(xpath="//*[contains(text(),'(Flat Rate - Fixed)')]")
+	@FindBy(css="tr[class='totals shipping excl']")
 	WebElement flat_rate;
 	
-	@FindBy(xpath="//*[contains(text(),'Order Total')]")
+	@FindBy(css="tr[class='grand totals']")
 	WebElement order_total;
 	
-	@FindBy(xpath="//button[@title='Proceed to Checkout']//span")
+	@FindBy(css="button[title='Proceed to Checkout'] span")
 	WebElement checkout;
+	
+	@FindBy(css ="#shopping-cart-table strong.product-item-name a")
+	List<WebElement> product_names_anchor_tag_list;
+	
+	@FindBy(css="#shopping-cart-table td.col.price span.price")
+	List<WebElement> product_price_anchor_tag_list;
 	
 	public CartPage(WebDriver driver) {
 		PageFactory.initElements(driver, this);

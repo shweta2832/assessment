@@ -72,8 +72,8 @@ public class Steps {
 		driver.close();
 	}
 	
-	@Given("^User is on Shopping Website page$")
-	public void user_is_on_shopping_website_page() {
+	@Given("^User is on the website page$")
+	public void user_is_on_the_website_page() {
 		try {
 			driver.get(configFileReader.getApplicationUrl());
 		} catch (Exception e) {
@@ -82,8 +82,8 @@ public class Steps {
 		}
 	}
 
-	@When("^Clicks on Signin Option to Login$")
-	public void clicks_on_signin_option_to_login() {
+	@When("^User clicks sign in option to login$")
+	public void user_clicks_on_signin_option_to_login() {
 		try {
 		    websiteDefaultPage = new WebsiteDefaultPage(driver);
 		    websiteDefaultPage.click_on_sign_in(); //registered user need to click on signin link
@@ -93,8 +93,8 @@ public class Steps {
 		}
 	}
 	   	
-	@And("^Provides the credentials emailaddress and password$")
-	public void provide_the_credentials_emailaddress_and_password() {
+	@Then("^User enters email address and password$")
+	public void user_enters_email_address_and_password() {
 		try {
 		    String email_address = configFileReader.getUserEmailAddress(); //read email address from configuration file
 		    String password = configFileReader.getUserPassword(); //read password from configuration file
@@ -108,7 +108,7 @@ public class Steps {
 
 	}
 
-	@And("^Clicks Signin for logging into application$")
+	@Then("^Clicks Signin for logging into application$")
 	public void clicks_signin_for_logging_into_application() {
 		try {
 			loginPage.click_submit();
@@ -127,8 +127,8 @@ public class Steps {
 		}	
     }
 	
-	@When("^User provides product details add them to shopping cart$")
-	public void user_provides_product_details_add_them_to_shopping_cart(DataTable tables) {
+	@Then("^User adds products to shopping cart$")
+	public void user_adds_products_to_shopping_cart(DataTable tables) {
 		product_price_list=new LinkedList<>();  //dynamic list to add product price which are selected from shopping website
 		product_name_list=new LinkedList<>(); //dynamic list to add product names which are selected from shopping website
 		homePage=new HomePage(driver);
@@ -181,7 +181,7 @@ public class Steps {
 	            }
 	        }
 	        }
-	        catch (Exception e) {
+	        catch (NoSuchElementException e) {
 	        	String feature_product_menu=row.get("menu");
 				String feature_product_category=row.get("category");
 				String feature_product_subcategory=row.get("subcategory");
@@ -190,8 +190,8 @@ public class Steps {
 			}
 		}
 	}
-	@And("^Go to Cart page to verify added Products and Price$")
-	public void go_to_cart_page_to_verify_added_products_and_price() {
+	@Then("^Verify the order summary on checkout page$")
+	public void verify_the_order_summary_on_checkout_page() {
 		try {
 			productPage.scroll_till_top_of_page();
 			//wait for page to load and click shopping cart
@@ -211,8 +211,8 @@ public class Steps {
         
 	}
 
-	@Then("^User checkout the items$")
-	public void user_checkout_the_items() throws InterruptedException  {
+	@Then("^User Clicks Proceed to checkout$")
+	public void user_clicks_proceed_to_checkout() throws InterruptedException  {
 		//wait for Proceed to check button to be completely visible
 		try {
 			WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -224,8 +224,8 @@ public class Steps {
 		}
 	}
 
-	@And("^Provide the Delivery Address details$")
-	public void provide_the_delivery_address_details(DataTable tables) throws InterruptedException {  
+	@And("^Provides Delivery Address details$")
+	public void provides_delivery_address_details(DataTable tables) throws InterruptedException {  
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		shippingAddressPage = new ShippingAddressPage(driver);
 
@@ -281,8 +281,8 @@ public class Steps {
 
 	}
 	
-	@And("^Select Shipping method as \"([^\\\"]*)\" for Delivery$")
-	public void select_shipping_method_for_delivery_(String delivery_method) {
+	@And("^Selects Shipping method as \"([^\\\"]*)\" for Delivery$")
+	public void selects_shipping_method_for_delivery_(String delivery_method) {
 		//click delivery method
 	    try {
 			shippingAddressPage.click_deliver_method(delivery_method);
@@ -292,8 +292,8 @@ public class Steps {
 	}
 	
 	
-	@Then("^User places the order$")
-	public void user_places_the_order() throws InterruptedException {
+	@And("^Completes the place order process$")
+	public void completes_the_place_order_process() throws InterruptedException {
 		try {
 		    paymentPage = new PaymentPage(driver);
 		    WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -308,8 +308,8 @@ public class Steps {
 		}
 
 	}
-	@And("^Verify if order is successfully placed$")
-	public void verify_if_order_is_successfully_placed() throws InterruptedException {		
+	@And("^Views Success message with order number on screen$")
+	public void views_success_message_with_order_number_on_screen() throws InterruptedException {		
 		try {
 			confirmationPage=new ConfirmationPage(driver);
 			WebDriverWait wait = new WebDriverWait(driver, 30); 

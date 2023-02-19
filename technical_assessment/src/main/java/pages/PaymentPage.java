@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.Wait;
 
 public class PaymentPage {
 	
-	@FindBy(xpath="//button[@type='submit' and @class='action primary checkout']")
+	@FindBy(css ="button[class='action primary checkout']")
 	WebElement place_order;
 
 	public PaymentPage(WebDriver driver) {

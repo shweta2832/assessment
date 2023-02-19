@@ -11,59 +11,58 @@ import org.openqa.selenium.support.ui.Wait;
 
 public class ShippingAddressPage {
 	
-	@FindBy(xpath="//div[text()='Shipping Address']")
+	@FindBy(css ="div[class='step-title']")
 	WebElement shipping_adddress_text;
 	
-	@FindBy(xpath="//div[@class='new-address-popup']//button")
+	@FindBy(css ="button[class='action action-show-popup']")
 	WebElement NewAddress;
 	
-	@FindBy(xpath="//input[@name='firstname']")
+	@FindBy(name="firstname")
 	WebElement firstname;
 	
-	@FindBy(xpath="//input[@name='lastname']")
+	@FindBy(name="lastname")
 	WebElement lastname;
 	
-	@FindBy(xpath="//input[@name='company']")
+	@FindBy(name="company")
 	WebElement company;
 	
-	@FindBy(xpath="//input[@name='street[0]']")
+	@FindBy(name="street[0]")
 	WebElement street0;
 	
-	@FindBy(xpath="//input[@name='street[1]']")
+	@FindBy(name="street[1]")
 	WebElement street1;
 	
-	
-	@FindBy(xpath="//input[@name='street[2]']")
+	@FindBy(name="street[2]")
 	WebElement street2;
 	
-	@FindBy(xpath="//input[@name='city']")
+	@FindBy(name="city")
 	WebElement city;
 	
-	@FindBy(xpath="//select[@name='region_id']")
+	@FindBy(name="region_id")
 	WebElement state;
 	
-	@FindBy(xpath="//select[@name='country_id']")
+	@FindBy(name="country_id")
 	WebElement country;
 	
-	@FindBy(xpath="//input[@name='postcode']")
+	@FindBy(name="postcode")
 	WebElement zip;
 	
-	@FindBy(xpath="//input[@name='telephone']")
+	@FindBy(name="telephone")
 	WebElement telephone;
 	
-	@FindBy(xpath="//input[@type='checkbox']")
+	@FindBy(id="shipping-save-in-address-book")
 	WebElement checkbox;
 	
-	@FindBy(xpath="//button[@class='action primary action-save-address']")
+	@FindBy(css ="button[class='action primary action-save-address']")
 	WebElement ship_here;
 	
-	@FindBy(xpath="//td[@id='label_carrier_flatrate_flatrate']//parent::tr//td[1]")
+	@FindBy(name="ko_unique_2")
 	WebElement flat_rate;
 	
-	@FindBy(xpath="//td[@id='label_carrier_bestway_tablerate']//parent::tr//td[1]")
+	@FindBy(name="ko_unique_3")
 	WebElement Bestway;
 	
-	@FindBy(xpath="//button[@type='submit' and @class='button action continue primary']")
+	@FindBy(css ="button[class='button action continue primary']")
 	WebElement confirm_Delivery;
 	
 	public ShippingAddressPage(WebDriver driver) {

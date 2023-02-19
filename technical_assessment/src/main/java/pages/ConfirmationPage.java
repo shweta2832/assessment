@@ -8,27 +8,22 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ConfirmationPage {
 	
-	@FindBy(xpath="//h1//span[text()='Thank you for your purchase!']")
+	@FindBy(css ="span[class='base']")
 	WebElement success_msg_link;
 	
-	@FindBy(xpath="//a[@class='order-number']/strong")
+	@FindBy(css ="a.order-number strong")
 	WebElement order_number;
 	
-	@FindBy(xpath="//button[@class='action switch']")
+	@FindBy(css ="button[class='action switch']")
 	WebElement profile_dropdown;
 	
-	@FindBy(xpath="//a[text()='My Account']")
+	@FindBy(partialLinkText = "My Account")
 	WebElement my_account;
 	
 	public ConfirmationPage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 	}
 	
-	public String retrieve_Success_message() {
-		// get message displayed on UI
-		String value = success_msg_link.getText();
-		return value;
-	}
 	 public String expected_message() {
 		 //set the expected message
 		 String expectedText = "Thank you for your purchase!";
