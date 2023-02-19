@@ -19,8 +19,6 @@ public class HomePage {
         this.driver=driver;
     }
 	
-//    By my_orders=By.xpath("//a[text()='My Orders']");
-//    By my_orders=By.cssSelector("a:contains('My Orders')");
     By my_orders=By.partialLinkText("My Orders");
     
     public void build_main_menu_actions(String feature_product_menu,
