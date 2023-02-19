@@ -70,7 +70,6 @@ public class ProductPage {
     	wait.until(ExpectedConditions.presenceOfElementLocated(product_name));
     	String name="";
     	while(name.isEmpty()) {
-			driver.navigate().refresh();
     		name=driver.findElement(product_name).getText();
     	}
 		return name;
@@ -82,7 +81,6 @@ public class ProductPage {
     	wait.until(ExpectedConditions.presenceOfElementLocated(product_price));
     	String price="";
     	while(price.isEmpty()) {
-			driver.navigate().refresh();
     		price=driver.findElement(product_price).getText();
     	}
 		return price;
