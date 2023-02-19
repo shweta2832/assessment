@@ -108,8 +108,8 @@ public class Steps {
 
 	}
 
-	@Then("^Clicks Signin for logging into application$")
-	public void clicks_signin_for_logging_into_application() {
+	@Then("^User Clicks Signin for logging into application$")
+	public void user_clicks_signin_for_logging_into_application() {
 		try {
 			loginPage.click_submit();
 		} catch (Exception e) {
@@ -191,8 +191,8 @@ public class Steps {
 			}
 		}
 	}
-	@Then("^Verify the order summary on checkout page$")
-	public void verify_the_order_summary_on_checkout_page() {
+	@Then("^User Verify the order summary on checkout page$")
+	public void user_verify_the_order_summary_on_checkout_page() {
 		try {
 			productPage.scroll_till_top_of_page();
 			//wait for page to load and click shopping cart
@@ -225,8 +225,8 @@ public class Steps {
 		}
 	}
 
-	@And("^Provides Delivery Address details$")
-	public void provides_delivery_address_details(DataTable tables) throws InterruptedException {  
+	@And("^User Provides Delivery Address details$")
+	public void user_provides_delivery_address_details(DataTable tables) throws InterruptedException {  
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		shippingAddressPage = new ShippingAddressPage(driver);
 
@@ -282,8 +282,8 @@ public class Steps {
 
 	}
 	
-	@And("^Selects Shipping method as \"([^\\\"]*)\" for Delivery$")
-	public void selects_shipping_method_for_delivery_(String delivery_method) {
+	@And("^User Selects Shipping method as \"([^\\\"]*)\" for Delivery$")
+	public void user_selects_shipping_method_for_delivery_(String delivery_method) {
 		//click delivery method
 	    try {
 			shippingAddressPage.click_deliver_method(delivery_method);
@@ -293,8 +293,8 @@ public class Steps {
 	}
 	
 	
-	@And("^Completes the place order process$")
-	public void completes_the_place_order_process() throws InterruptedException {
+	@And("^User Completes the place order process$")
+	public void user_completes_the_place_order_process() throws InterruptedException {
 		try {
 		    paymentPage = new PaymentPage(driver);
 		    WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -309,8 +309,8 @@ public class Steps {
 		}
 
 	}
-	@And("^Views Success message with order number on screen$")
-	public void views_success_message_with_order_number_on_screen() throws InterruptedException {		
+	@And("^User Views Success message with order number on screen$")
+	public void user_views_success_message_with_order_number_on_screen() throws InterruptedException {		
 		try {
 			confirmationPage=new ConfirmationPage(driver);
 			WebDriverWait wait = new WebDriverWait(driver, 30); 
@@ -324,8 +324,8 @@ public class Steps {
 
 	}
 	
-	@And("^Verify the Submitted order under My Orders section$")
-	public void verify_the_submitted_order_under_my_orders_section() {  
+	@And("^User Verify the Submitted order under My Orders section$")
+	public void user_verify_the_submitted_order_under_my_orders_section() {  
         try {
 			String order_placed= confirmationPage.get_order_number();
 			confirmationPage.go_to_home_screen();

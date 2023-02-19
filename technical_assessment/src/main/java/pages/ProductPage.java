@@ -69,7 +69,9 @@ public class ProductPage {
 		WebDriverWait wait = new WebDriverWait(driver, 10); 
     	wait.until(ExpectedConditions.presenceOfElementLocated(product_name));
     	String name="";
-    	while(name.isEmpty()) {
+		name=driver.findElement(product_name).getText();
+    	if(name.isEmpty()) {
+			driver.navigate().refresh();
     		name=driver.findElement(product_name).getText();
     	}
 		return name;
@@ -80,7 +82,9 @@ public class ProductPage {
 		WebDriverWait wait = new WebDriverWait(driver, 10); 
     	wait.until(ExpectedConditions.presenceOfElementLocated(product_price));
     	String price="";
-    	while(price.isEmpty()) {
+		price=driver.findElement(product_price).getText();
+    	if(price.isEmpty()) {
+			driver.navigate().refresh();
     		price=driver.findElement(product_price).getText();
     	}
 		return price;
