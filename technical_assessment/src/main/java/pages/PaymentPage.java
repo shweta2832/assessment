@@ -8,18 +8,17 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 
 public class PaymentPage {
-	
-	@FindBy(css ="button[class='action primary checkout']")
+
+	@FindBy(css = "button[class='action primary checkout']")
 	WebElement place_order;
 
 	public PaymentPage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
 	}
-	
+
 	public void place_order(Wait wait) {
-		//wait for Place order link to be visible
+		// wait for Place order link to be visible
 		wait.until(ExpectedConditions.visibilityOf(place_order));
 		place_order.click();
 	}
 }
-
